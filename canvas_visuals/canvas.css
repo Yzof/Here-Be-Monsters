@@ -1,3 +1,14 @@
 #canvas {
   border: 1px solid black;
+  width: 1600px;
+  height: 800px;
+}
+
+.center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
 }

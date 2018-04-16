@@ -1,0 +1,40 @@
+{
+  "name": "HBM",
+  "version": "1.0.0",
+  "description": "This project tentatively known as \"Here Be Monsters\" is an interactive map filled with data concerning various indigenous monsters. It is going to be powered by SheetJS, canvas, and vanilla JavaScript. The main interface will be built of a canvas element covered in different colors corresponding to different \"biomes\" that the various monsters will inhabit. Upon clicking one of the regions, the user will be presented with thumbnail portraits of the various monsters that are associated with that particular region. Further hovering or clicking will bring up a final short textual description for this monster.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch"
+  },
+  "engines": {
+    "node": "6.10.1",
+    "npm": "3.10.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yzof/Here-Be-Monsters.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yzof/Here-Be-Monsters/issues"
+  },
+  "homepage": "https://github.com/Yzof/Here-Be-Monsters#readme",
+  "devDependencies": {
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "lodash": "^4.17.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "xlsx": "^0.12.9"
+  }
+}
