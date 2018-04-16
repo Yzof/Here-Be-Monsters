@@ -22,7 +22,7 @@ Finally the project will have these small visual features, these are necessary b
 ## WireFrames
 The project will consist of a single page simulated canvas with splotches of color representing colored areas. It is my hope that these colors will resemble an island or small continent, though how much geographic detail I can fit in remains to be seen.
 
-![wireframe](https://drive.google.com/open?id=1YvDVoSUwbIvMt__Vrg10dmJ2VZR6HZ61)
+![wireframe](index.png)
 
 
 ## Technologies
