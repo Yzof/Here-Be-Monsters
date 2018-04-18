@@ -80,12 +80,14 @@ function loadData() {
   let xmlhttp = new XMLHttpRequest();
   console.log("base load");
   xmlhttp.open("GET",url,true);
+  console.log(xmlhttp, "open xmlhttp");
   xmlhttp.onreadystatechange = function() {
     // console.log(xmlhttp.withCredentials);
     // if (xmlhttp.readyState === 4) {
     //   console.log(xmlhttp.status, "ready 4");
     // }
-    console.log("ready state");
+    console.log(xmlhttp.readyState, "ready state");
+    console.log(xmlhttp.status, "status");
     if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
       console.log(xmlhttp.responseText);
       console.log("hello");
