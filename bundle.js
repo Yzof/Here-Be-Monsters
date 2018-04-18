@@ -105,8 +105,7 @@ function start() {
     'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
   }).then(function() {
     // Executes an API request, and returns a Promise.
-    // The method name `language.translations.list` comes from the API discovery.
-    console.log("init");
+    debugger;
     return gapi.client.request({
       path: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZAkr1mDh-DWEIP6kSrERE3Bj4BnGCzCLBVyGJfl_4g0JBWWYSa-YDYGDw9nijqGMFE8JvMkghghPA/pubhtml?gid=1031805306&single=true"
     });
