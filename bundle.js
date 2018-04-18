@@ -60,118 +60,40 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const Hex = __webpack_require__(1);
 const { Map } = __webpack_require__(2);
+
+// const { workbook } = require('./data/data.js');
+
 let HBMap = new Map;
 HBMap.render();
 
-//array creator
-// while (hexArr.length != 10) {
-//   let innerArr = [];
-//   let biome = biomes[(selector % 4)];
-//   while (innerArr.length != 5) {
-//     let hex = new Hex(BIOMES[biome], ctx);
-//     innerArr.push(hex);
-//   }
-//   selector ++;
-//   hexArr.push(innerArr);
-// }
-
-//itterative render
-// for (var i = 0; i < hexArr.length; i++) {
-//   let xOffset = 112.5 * i;
-//   let yOffset = 0;
-//   if (i % 2 != 0) {
-//     yOffset = 65;
-//   }
-//   let innerArr = hexArr[i];
-//   for (var j = 0; j < innerArr.length; j++) {
-//
-//     innerArr[j].render(x + xOffset, y + yOffset + downshift);
-//   }
-// }
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/*
-info is an object containing:
-{
-  color: hex code
-  biome: string
-  parity: string(odd or even)
-  column: number
-  row: vertical offset
+function loadData() {
+  var url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZAkr1mDh-DWEIP6kSrERE3Bj4BnGCzCLBVyGJfl_4g0JBWWYSa-YDYGDw9nijqGMFE8JvMkghghPA/pubhtml?gid=1031805306&single=truekey=AIzaSyC3H_vpeG4Vcp2VEx-UjqAIW96US0Ddono";
+  let xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET",url,true);
+  // xmlhttp.withCredentials = true;
+  xmlhttp.onreadystatechange = function() {
+    // console.log(xmlhttp.withCredentials);
+    // if (xmlhttp.readyState === 4) {
+    //   console.log(xmlhttp.status, "ready 4");
+    // }
+    if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+      console.log(xmlhttp.responseText);
+      console.log("hello");
+    }
+  };
+  xmlhttp.send();
 }
-*/
 
-class Hex {
-  constructor(info, canvas, startArr) {
-    this.color = info.color;
-    this.biome = info.biome;
-    this.size = 75;
-    this.side = 0;
-    this.canvas = canvas;
-
-    //these become the center
-    this.posX = 0;
-    this.posY = 0;
-
-    //we want to set a fixed x and y coord, do the math up here.
-    this.position(info, startArr);
-  }
-
-  position(info, startArr) {
-    this.posX = startArr[0] + (112.5 * info.column);
-    if (info.parity === "odd") {
-      //we want the 65 offset
-      this.posY = startArr[1] + 65 + info.row;
-    } else {
-      this.posY = startArr[1] + info.row;
-    }
-  }
-
-  details() {
-    console.log(this.color, this.biome);
-  }
-
-  render() {
-    this.canvas.beginPath();
-    this.canvas.moveTo(
-      this.posX + this.size * Math.cos(0),
-      this.posY + this.size * Math.sin(0)
-    );
-
-    for (this.side; this.side < 7; this.side++) {
-      this.canvas.lineTo(
-        this.posX + this.size * Math.cos(this.side * 2 * Math.PI / 6),
-        this.posY + this.size * Math.sin(this.side * 2 * Math.PI / 6)
-      );
-      if (this.biome === "ocean" && (this.side === 3)) {
-        this.canvas.stroke();
-      }
-    }
-    this.canvas.strokeStyle="#000";
-    this.canvas.fillStyle = this.color;
-    if (this.biome != "ocean") {
-      this.canvas.stroke();
-    }
-    this.canvas.fill();
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["Hex"] = Hex;
-
+window.onload = loadData;
 
 
 /***/ }),
@@ -180,8 +102,8 @@ class Hex {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const { columns } = __webpack_require__(4);
-const { Hex } = __webpack_require__(1);
+const { columns } = __webpack_require__(3);
+const { Hex } = __webpack_require__(4);
 
 class Map {
   constructor(){
@@ -212,25 +134,34 @@ class Map {
   clickHandler(e) {
     e.preventDefault();
     if (e) {
+      //Finds the x,y of mouse
       let mouseX = e.offsetX;
       let mouseY = e.offsetY;
       let target = null;
       let smallest = null;
       for (var i = 0; i < this.keys.length; i++) {
+        // extracts the x and y of all the hexs
         let points = this.keys[i].split(",");
         let hexX = parseInt(points[0]);
         let hexY = parseInt(points[1]);
+
+        //Math
         let a = mouseX - hexX;
         let b = mouseY - hexY;
         let c = Math.sqrt( a*a + b*b );
+
+        //Finds smallest line
         if ((smallest === null || c < smallest) && c < 65) {
           smallest = c;
           target = points.join(",");
         }
       }
 
+      //If hex exists render it's details
       let hex = this.hexs[target];
-      hex.details();
+      if (hex) {
+        hex.details();
+      }
     }
   }
 
@@ -252,8 +183,7 @@ class Map {
 
 
 /***/ }),
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -584,6 +514,82 @@ let columns = [
   ],
 ];
 
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/*
+info is an object containing:
+{
+  color: hex code
+  biome: string
+  parity: string(odd or even)
+  column: number
+  row: vertical offset
+}
+*/
+
+class Hex {
+  constructor(info, canvas, startArr) {
+    this.color = info.color;
+    this.biome = info.biome;
+    this.size = 75;
+    this.side = 0;
+    this.canvas = canvas;
+
+    //these become the center
+    this.posX = 0;
+    this.posY = 0;
+
+    //we want to set a fixed x and y coord, do the math up here.
+    this.position(info, startArr);
+  }
+
+  position(info, startArr) {
+    this.posX = startArr[0] + (112.5 * info.column);
+    if (info.parity === "odd") {
+      //we want the 65 offset
+      this.posY = startArr[1] + 65 + info.row;
+    } else {
+      this.posY = startArr[1] + info.row;
+    }
+  }
+
+  details() {
+    //Reveals monsters living here
+    console.log(this.color, this.biome, [this.posX, this.posY]);
+  }
+
+  render() {
+    this.canvas.beginPath();
+    this.canvas.moveTo(
+      this.posX + this.size * Math.cos(0),
+      this.posY + this.size * Math.sin(0)
+    );
+
+    for (this.side; this.side < 7; this.side++) {
+      this.canvas.lineTo(
+        this.posX + this.size * Math.cos(this.side * 2 * Math.PI / 6),
+        this.posY + this.size * Math.sin(this.side * 2 * Math.PI / 6)
+      );
+      if (this.biome === "ocean" && (this.side === 3)) {
+        this.canvas.stroke();
+      }
+    }
+    this.canvas.strokeStyle="#000";
+    this.canvas.fillStyle = this.color;
+    if (this.biome != "ocean") {
+      this.canvas.stroke();
+    }
+    this.canvas.fill();
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["Hex"] = Hex;
 
 
 

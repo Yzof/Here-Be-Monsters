@@ -36,7 +36,8 @@ export class Hex {
   }
 
   details() {
-    console.log(this.color, this.biome);
+    //Reveals monsters living here
+    console.log(this.color, this.biome, [this.posX, this.posY]);
   }
 
   render() {

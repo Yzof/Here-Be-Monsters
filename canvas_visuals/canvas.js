@@ -30,25 +30,34 @@ export class Map {
   clickHandler(e) {
     e.preventDefault();
     if (e) {
+      //Finds the x,y of mouse
       let mouseX = e.offsetX;
       let mouseY = e.offsetY;
       let target = null;
       let smallest = null;
       for (var i = 0; i < this.keys.length; i++) {
+        // extracts the x and y of all the hexs
         let points = this.keys[i].split(",");
         let hexX = parseInt(points[0]);
         let hexY = parseInt(points[1]);
+
+        //Math
         let a = mouseX - hexX;
         let b = mouseY - hexY;
         let c = Math.sqrt( a*a + b*b );
+
+        //Finds smallest line
         if ((smallest === null || c < smallest) && c < 65) {
           smallest = c;
           target = points.join(",");
         }
       }
 
+      //If hex exists render it's details
       let hex = this.hexs[target];
-      hex.details();
+      if (hex) {
+        hex.details();
+      }
     }
   }
 

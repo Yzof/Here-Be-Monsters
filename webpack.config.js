@@ -10,5 +10,9 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: [".js", ".jsx", "*"]
+  },
+  node: {
+    process: false,
+    Buffer: false
   }
 };

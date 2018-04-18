@@ -1,30 +1,26 @@
-const Hex = require('./canvas_visuals/hexs/hex.js');
 const { Map } = require('./canvas_visuals/canvas.js');
+
+// const { workbook } = require('./data/data.js');
+
 let HBMap = new Map;
 HBMap.render();
 
-//array creator
-// while (hexArr.length != 10) {
-//   let innerArr = [];
-//   let biome = biomes[(selector % 4)];
-//   while (innerArr.length != 5) {
-//     let hex = new Hex(BIOMES[biome], ctx);
-//     innerArr.push(hex);
-//   }
-//   selector ++;
-//   hexArr.push(innerArr);
-// }
+function loadData() {
+  var url="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZAkr1mDh-DWEIP6kSrERE3Bj4BnGCzCLBVyGJfl_4g0JBWWYSa-YDYGDw9nijqGMFE8JvMkghghPA/pubhtml?gid=1031805306&single=truekey=AIzaSyC3H_vpeG4Vcp2VEx-UjqAIW96US0Ddono";
+  let xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET",url,true);
+  // xmlhttp.withCredentials = true;
+  xmlhttp.onreadystatechange = function() {
+    // console.log(xmlhttp.withCredentials);
+    // if (xmlhttp.readyState === 4) {
+    //   console.log(xmlhttp.status, "ready 4");
+    // }
+    if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+      console.log(xmlhttp.responseText);
+      console.log("hello");
+    }
+  };
+  xmlhttp.send();
+}
 
-//itterative render
-// for (var i = 0; i < hexArr.length; i++) {
-//   let xOffset = 112.5 * i;
-//   let yOffset = 0;
-//   if (i % 2 != 0) {
-//     yOffset = 65;
-//   }
-//   let innerArr = hexArr[i];
-//   for (var j = 0; j < innerArr.length; j++) {
-//
-//     innerArr[j].render(x + xOffset, y + yOffset + downshift);
-//   }
-// }
+window.onload = loadData;
