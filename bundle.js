@@ -83,7 +83,7 @@ function start() {
   }).then(function() {
     gapi.client.sheets.spreadsheets.values.batchGet({
       spreadsheetId: '10i952_UlOAfVAIBbAVskHEIXqR3miTTdRbQE6xElqzg',
-      range: 'A1:N2',
+      ranges: 'A1:N2',
       includeGridData: true
     }).then(function(response) {
       var range = response.result;
