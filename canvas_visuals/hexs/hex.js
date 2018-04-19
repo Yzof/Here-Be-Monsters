@@ -37,6 +37,7 @@ export class Hex {
 
   details() {
     //Reveals monsters living here
+    //grab the biome monster info, display a modal?
     console.log(this.color, this.biome, [this.posX, this.posY]);
   }
 

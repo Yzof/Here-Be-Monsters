@@ -18,7 +18,7 @@ const BIOMES = {
   },
   "forest": {
     color: "#97d077",
-    biome: "forest"
+    biome: "forest",
   },
   "desert": {
     color: "#fff2cc",
