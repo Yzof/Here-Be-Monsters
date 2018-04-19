@@ -13,11 +13,12 @@ function start() {
   }).then(function() {
     gapi.client.sheets.spreadsheets.values.batchGet({
       spreadsheetId: '10i952_UlOAfVAIBbAVskHEIXqR3miTTdRbQE6xElqzg',
-      ranges: 'A1:N2',
+      ranges: ['A1:N2', 'A3:N3'],
       includeGridData: true
     }).then(function(response) {
       var range = response.result;
       if (range.valueRanges.length > 0) {
+        console.log("test1");
         console.log(range);
       } else {
         // appendPre('No data found.');
