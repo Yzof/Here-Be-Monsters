@@ -112,7 +112,9 @@ function start() {
     // return resp;
     gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '10i952_UlOAfVAIBbAVskHEIXqR3miTTdRbQE6xElqzg',
-      range: 'Class Data!A2:E',
+      clientId: "733051836624-9l0ljgjagc03pl7pl210f9s2huebu7ca.apps.googleusercontent.com",
+      range: 'A1:N2',
+      includeGridData: true
     }).then(function(response) {
       var range = response.result;
       if (range.values.length > 0) {
@@ -129,7 +131,7 @@ function start() {
       }
     }, function(response) {
       // appendPre('Error: ' + response.result.error.message);
-      console.log("Error:", response.result.error.message);
+      console.log(response);
     });
   });
 }
