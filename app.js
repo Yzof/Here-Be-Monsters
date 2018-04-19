@@ -36,13 +36,12 @@ function start() {
   }).then(function() {
     // Executes an API request, and returns a Promise.
     let resp = gapi.client.request({
-      path: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZAkr1mDh-DWEIP6kSrERE3Bj4BnGCzCLBVyGJfl_4g0JBWWYSa-YDYGDw9nijqGMFE8JvMkghghPA/pubhtml?gid=1031805306&single=true"
+      "path": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZAkr1mDh-DWEIP6kSrERE3Bj4BnGCzCLBVyGJfl_4g0JBWWYSa-YDYGDw9nijqGMFE8JvMkghghPA/pubhtml?gid=1031805306&single=true"
     });
-    debugger;
     return resp;
   }).then(function(response) {
     //Do stuff with response
-    console.log("response:", response);
+    console.log("response:", response.result);
   }, function(reason) {
     console.log('Error: ' + reason.result.error.message);
   });
