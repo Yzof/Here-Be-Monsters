@@ -87,7 +87,7 @@ function start() {
       includeGridData: true
     }).then(function(response) {
       var range = response.result;
-      if (range.values.length > 0) {
+      if (range.valueRanges.length > 0) {
         console.log(range);
       } else {
         // appendPre('No data found.');
