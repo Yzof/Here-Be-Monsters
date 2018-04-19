@@ -104,7 +104,7 @@ function fetch(id) {
 
 // Loads the JavaScript client library and invokes `start` afterwards.
 gapi.load('client', start);
-fetch(2);
+gapi.load('client', fetch(2));
 
 
 /***/ }),
