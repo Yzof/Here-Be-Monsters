@@ -103,7 +103,6 @@ function start() {
   gapi.client.init({
     'apiKey': 'AIzaSyC3H_vpeG4Vcp2VEx-UjqAIW96US0Ddono',
     'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-    'clientId': "733051836624-9l0ljgjagc03pl7pl210f9s2huebu7ca.apps.googleusercontent.com"
   }).then(function() {
     // Executes an API request, and returns a Promise.
     // console.log(anything);
