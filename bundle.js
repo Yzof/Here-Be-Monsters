@@ -255,7 +255,6 @@ class Map {
     for (var j = 0; j < details.monsters.length; j++) {
       let mon = details.monsters[j];
       let li = document.getElementById(`monster${j + 1}`);
-      let name = document.createTextNode(mon.name);
 
       li.innerHTML = `<p>${mon.name}</p>`;
     }
@@ -269,18 +268,11 @@ class Map {
     let para = head.firstElementChild;
 
     head.removeChild(para);
-    div.removeChild(ul);
 
-    let newUl = document.createElement('ul');
-    newUl.id = "monster-list";
-    console.log(newUl, "new Ul");
+    for (var j = 0; j < 4; j++) {
+      let li = document.getElementById(`monster${j + 1}`);
 
-    for (var i = 1; i < 4; i++) {
-      console.log("for loop");
-      let newLi = document.createElement('li');
-      newLi.id = `monster${i}`;
-      console.log(`Monster number ${i}`, newLi);
-      newUl.appendChild(newLi);
+      li.innerHTML = ``;
     }
   }
 
