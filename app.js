@@ -77,13 +77,17 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal
 btn.onclick = function() {
     modal.style.display = "block";
+    let para = document.createElement("p");
     let node = document.createTextNode("words words");
-    head.appendChild(node);
+    para.appendChild(node);
+    head.appendChild(para);
 };
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
+    let para = head.firstElementChild;
+    head.removeChild(para);
 };
 
 // When the user clicks anywhere outside of the modal, close it
