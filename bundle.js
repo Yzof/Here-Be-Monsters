@@ -212,19 +212,18 @@ span.onclick = function() {
 };
 
 window.onclick = function(event) {
-
-  modal.style.display = "none";
-  let head = document.getElementById("header");
-  let node = head.firstElementChild;
-  if (node) {
-    let main = document.getElementsByClassName('modal-body')[0];
-    let node2 = document.getElementById("detail-body");
-    //remove child
-    console.log("node2:", node2);
-    head.removeChild(node);
-    main.removeChild(node2);
-  }
-
+  console.log(event.target);
+    if (event.target == modal) {
+        modal.style.display = "none";
+        let head = document.getElementById("header");
+        let node = head.firstElementChild;
+        let main = document.getElementsByClassName('modal-body')[0];
+        let node2 = document.getElementById("detail-body");
+        //remove child
+        console.log("node2:", node2);
+        head.removeChild(node);
+        main.removeChild(node2);
+    }
 };
 // Loads the JavaScript client library and invokes `start` afterwards.
 gapi.load('client', start);
