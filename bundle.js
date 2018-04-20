@@ -170,8 +170,8 @@ class Map {
       for (var j = 0; j < column.length; j++) {
         let biome = new Biome(column[j].biome);
 
-        if (this.biome[biome.biome] === undefined) {
-          this.biome[biome.biome] = biome;
+        if (this.biomes[biome.biome] === undefined) {
+          this.biomes[biome.biome] = biome;
         }
 
         let hex = new Hex(column[j], this.ctx, [this.startX, this.startY]);
