@@ -160,7 +160,7 @@ function aboutHandle(e) {
   let para2 = document.createElement("p");
   para2.id = "detail-body";
   let text = document.createTextNode(
-    "Here Be Monsters is a visual representation of data points stored in a spreadsheet. It uses Googles Sheets API and HTML canvas to create an interactive map. Given any spreadsheet, a similar system can be implemented in order to create a pleasing display for users. You can visit the original spreadsheet here:"
+    "Here Be Monsters is a visual representation of data points stored in a spreadsheet. It uses Googles Sheets API and HTML canvas to create an interactive map. Given any spreadsheet, a similar system can be implemented in order to create a pleasing display for users. You can visit the original spreadsheet here: "
   );
   let anchor = document.createElement("a");
   anchor.href = "https://goo.gl/mV8Dq8";
