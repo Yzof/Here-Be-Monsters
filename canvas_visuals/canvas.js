@@ -128,7 +128,7 @@ export class Map {
 
     head.removeChild(para);
 
-    for (var j = 0; j < 4; j++) {
+    for (var j = 0; j < 3; j++) {
       let li = document.getElementById(`monster${j + 1}`);
 
       li.innerHTML = ``;

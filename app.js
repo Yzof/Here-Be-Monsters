@@ -78,10 +78,13 @@ console.log("outside handle");
 function aboutHandle(e) {
   e.preventDefault();
   console.log("about handle");
-  modal.style.display = "block";
+  let modalHeader = document.getElementById("modal-header");
   let head = document.getElementById("header");
   let para1 = document.createElement("p");
   let node = document.createTextNode("About");
+
+  modal.style.display = "block";
+  modalHeader.style.backgroundColor = '#7ea6e0';
   para1.appendChild(node);
   head.appendChild(para1);
 
@@ -100,11 +103,13 @@ helpBtn.addEventListener("click", helpHandle);
 function helpHandle(e) {
   e.preventDefault();
   console.log("help handle");
-  modal.style.display = "block";
+  let modalHeader = document.getElementById("modal-header");
   let head = document.getElementById("header");
   let para1 = document.createElement("p");
   let node = document.createTextNode("Help");
 
+  modal.style.display = "block";
+  modalHeader.style.backgroundColor = '#7ea6e0';
   para1.appendChild(node);
   head.appendChild(para1);
 
@@ -130,6 +135,7 @@ span.onclick = function() {
 };
 
 window.onclick = function(event) {
+  console.log(event);
     if (event.target == modal) {
         modal.style.display = "none";
         let head = document.getElementById("header");
