@@ -22,6 +22,9 @@ export class Biome {
         this.monsters = [];
         break;
     }
+
+    this.addMonster = this.addMonster.bind(this);
+    this.details = this.details.bind(this);
   }
 
   addMonster(monster) {
