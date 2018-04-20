@@ -89,6 +89,7 @@ function aboutHandle(e) {
 
   let main = document.getElementsByClassName('modal-body')[0];
   let para2 = document.createElement("p");
+  para2.id = "detail-body";
   let text = document.createTextNode(
     "Here Be Monsters is a visual representation of data points stored in a spreadsheet. It uses Googles Sheets API and HTML canvas to create an interactive map. Given any spreadsheet, a similar system can be implemented in order to create a pleasing display for users."
   );
@@ -114,6 +115,7 @@ function helpHandle(e) {
 
   let main = document.getElementsByClassName('modal-body')[0];
   let para2 = document.createElement("p");
+  para2.id = "detail-body";
   let text = document.createTextNode(
     "Each of the Hexagrams on the map below represent a Biome, each containing a unique assortment of dangerous monsters. The selection is a semi-randomized list of those monsters and their associated data. Feel free to explore and see what you find!"
   );
@@ -127,7 +129,8 @@ span.onclick = function() {
     let head = document.getElementById("header");
     let node = head.firstElementChild;
     let main = document.getElementsByClassName('modal-body')[0];
-    let node2 = main.firstElementChild;
+    //this is a ul, needs to be a p
+    let node2 = document.getElementById("detail-body");
     //remove child
     console.log("Before head", head);
     console.log("Before Main", main);
@@ -140,18 +143,19 @@ span.onclick = function() {
 };
 
 window.onclick = function(event) {
-  console.log(event);
-    if (event.target == modal) {
-        modal.style.display = "none";
-        let head = document.getElementById("header");
-        let node = head.firstElementChild;
-        let main = document.getElementsByClassName('modal-body')[0];
-        let node2 = main.firstElementChild;
-        //remove child
-        console.log("node2:", node2);
-        head.removeChild(node);
-        main.removeChild(node2);
-    }
+
+  modal.style.display = "none";
+  let head = document.getElementById("header");
+  let node = head.firstElementChild;
+  if (node) {
+    let main = document.getElementsByClassName('modal-body')[0];
+    let node2 = document.getElementById("detail-body");
+    //remove child
+    console.log("node2:", node2);
+    head.removeChild(node);
+    main.removeChild(node2);
+  }
+
 };
 // Loads the JavaScript client library and invokes `start` afterwards.
 gapi.load('client', start);
