@@ -118,7 +118,6 @@ function start() {
           let monster = new Monster(data.values[0], row);
           HBMap.biomes[monster.biome].addMonster(monster);
         }
-        console.log(range);
       } else {
         console.log("No Data Found.");
       }
@@ -134,8 +133,6 @@ function extractNum(string) {
   return parseInt(array[array.length - 1]);
 }
 
-console.log("why won't this exist");
-
 // Get the modal
 var modal = document.getElementById('myModal');
 // Get the <span> element that closes the modal
@@ -145,7 +142,6 @@ var aboutBtn = document.getElementById("aboutBtn");
 aboutBtn.addEventListener("click", aboutHandle);
 function aboutHandle(e) {
   e.preventDefault();
-  console.log("about handle");
   let modalHeader = document.getElementById("modal-header");
   let head = document.getElementById("header");
   let para1 = document.createElement("p");
@@ -175,7 +171,6 @@ helpBtn.addEventListener("click", helpHandle);
 
 function helpHandle(e) {
   e.preventDefault();
-  console.log("help handle");
   let modalHeader = document.getElementById("modal-header");
   let head = document.getElementById("header");
   let para1 = document.createElement("p");
@@ -202,19 +197,12 @@ span.onclick = function() {
     let node = head.firstElementChild;
     let main = document.getElementsByClassName('modal-body')[0];
     let node2 = document.getElementById("detail-body");
-    //remove child
-    console.log("Before head", head);
-    console.log("Before Main", main);
-    console.log("Before Node1", node);
-    console.log("Before Node2", node2);
+
     head.removeChild(node);
     main.removeChild(node2);
-    console.log("After head", head);
-    console.log("After Main", main);
 };
 
 window.onclick = function(event) {
-  console.log(event.target, "target");
     if (event.target == modal) {
         modal.style.display = "none";
         let head = document.getElementById("header");
@@ -222,7 +210,6 @@ window.onclick = function(event) {
         let main = document.getElementsByClassName('modal-body')[0];
         let node2 = document.getElementById("detail-body");
         //remove child
-        console.log("node2:", node2);
         head.removeChild(node);
         main.removeChild(node2);
     }
@@ -367,7 +354,6 @@ class Map {
     let para = head.firstElementChild;
     let main = document.getElementsByClassName('modal-body')[0];
     let node2 = document.getElementById("detail-body");
-    console.log("reset details");
     head.removeChild(para);
     if (node2) {
       main.removeChild(node2);
@@ -773,13 +759,7 @@ class Hex {
       this.posY = startArr[1] + info.row;
     }
   }
-
-  details() {
-    //Reveals monsters living here
-    //grab the biome monster info, display a modal?
-    console.log(this.color, this.biome, [this.posX, this.posY]);
-  }
-
+  
   render() {
     this.canvas.beginPath();
     this.canvas.moveTo(

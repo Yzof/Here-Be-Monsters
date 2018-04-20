@@ -127,7 +127,6 @@ export class Map {
     let para = head.firstElementChild;
     let main = document.getElementsByClassName('modal-body')[0];
     let node2 = document.getElementById("detail-body");
-    console.log("reset details");
     head.removeChild(para);
     if (node2) {
       main.removeChild(node2);

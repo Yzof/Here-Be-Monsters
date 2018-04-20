@@ -34,13 +34,7 @@ export class Hex {
       this.posY = startArr[1] + info.row;
     }
   }
-
-  details() {
-    //Reveals monsters living here
-    //grab the biome monster info, display a modal?
-    console.log(this.color, this.biome, [this.posX, this.posY]);
-  }
-
+  
   render() {
     this.canvas.beginPath();
     this.canvas.moveTo(
