@@ -1,5 +1,6 @@
 const { columns } = require('./columns.js');
 const { Hex } = require('./hexs/hex.js');
+const { Biome } = require('../biome/biome.js');
 
 export class Map {
   constructor(){
@@ -10,6 +11,7 @@ export class Map {
     this.columns = columns;
     this.hexs = {};
     this.keys = [];
+    this.biomes = {};
     this.clickHandler = this.clickHandler.bind(this);
 
     this.populate();
@@ -20,6 +22,12 @@ export class Map {
       let column = this.columns[i];
 
       for (var j = 0; j < column.length; j++) {
+        let biome = new Biome(column[j].biome);
+
+        if (this.biome[biome.biome] === undefined) {
+          this.biome[biome.biome] = biome;
+        }
+
         let hex = new Hex(column[j], this.ctx, [this.startX, this.startY]);
         let pos = hex.posX + "," + hex.posY;
         this.hexs[pos] = hex;
@@ -56,7 +64,8 @@ export class Map {
       //If hex exists render it's details
       let hex = this.hexs[target];
       if (hex) {
-        hex.details();
+        let detes = this.biomes[hex.biome].details();
+        console.log(detes);
       }
     }
   }

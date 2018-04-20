@@ -1,9 +1,8 @@
 const { Map } = require('./canvas_visuals/canvas.js');
-
-// const { workbook } = require('./data/data.js');
+const { Monster } = require('./monster/monster.js');
 
 let HBMap = new Map;
-HBMap.render();
+
 
 function start() {
   // Initializes the client with the API key and the Translate API.
@@ -42,19 +41,28 @@ function start() {
     }).then(function(response) {
       var range = response.result;
       if (range.valueRanges.length > 0) {
-        console.log("test1");
+        //Create Monsters add them to biome
+        for (var i = 0; i < range.valueRanges.length; i++) {
+          let data = range.valueRanges[i];
+          let row = extractNum(data.range);
+
+          let monster = new Monster(data.values, row);
+          HBMap.biomes[monster.biome].addMonster(monster);
+        }
         console.log(range);
       } else {
-        // appendPre('No data found.');
         console.log("No Data Found.");
       }
-    }, function(response) {
-      // appendPre('Error: ' + response.result.error.message);
-      console.log(response);
     });
   });
+}
+
+function extractNum(string) {
+  let array = string.split("N");
+  return parseInt(array[array.length - 1]);
 }
 
 
 // Loads the JavaScript client library and invokes `start` afterwards.
 gapi.load('client', start);
+HBMap.render();

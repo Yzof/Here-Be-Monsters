@@ -69,11 +69,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 const { Map } = __webpack_require__(2);
-
-// const { workbook } = require('./data/data.js');
+const { Monster } = __webpack_require__(13);
 
 let HBMap = new Map;
-HBMap.render();
+
 
 function start() {
   // Initializes the client with the API key and the Translate API.
@@ -112,22 +111,31 @@ function start() {
     }).then(function(response) {
       var range = response.result;
       if (range.valueRanges.length > 0) {
-        console.log("test1");
+        //Create Monsters add them to biome
+        for (var i = 0; i < range.valueRanges.length; i++) {
+          let data = range.valueRanges[i];
+          let row = extractNum(data.range);
+
+          let monster = new Monster(data.values, row);
+          HBMap.biomes[monster.biome].addMonster(monster);
+        }
         console.log(range);
       } else {
-        // appendPre('No data found.');
         console.log("No Data Found.");
       }
-    }, function(response) {
-      // appendPre('Error: ' + response.result.error.message);
-      console.log(response);
     });
   });
+}
+
+function extractNum(string) {
+  let array = string.split("N");
+  return parseInt(array[array.length - 1]);
 }
 
 
 // Loads the JavaScript client library and invokes `start` afterwards.
 gapi.load('client', start);
+HBMap.render();
 
 
 /***/ }),
@@ -138,6 +146,7 @@ gapi.load('client', start);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 const { columns } = __webpack_require__(3);
 const { Hex } = __webpack_require__(4);
+const { Biome } = __webpack_require__(12);
 
 class Map {
   constructor(){
@@ -148,6 +157,7 @@ class Map {
     this.columns = columns;
     this.hexs = {};
     this.keys = [];
+    this.biomes = {};
     this.clickHandler = this.clickHandler.bind(this);
 
     this.populate();
@@ -158,6 +168,12 @@ class Map {
       let column = this.columns[i];
 
       for (var j = 0; j < column.length; j++) {
+        let biome = new Biome(column[j].biome);
+
+        if (this.biome[biome.biome] === undefined) {
+          this.biome[biome.biome] = biome;
+        }
+
         let hex = new Hex(column[j], this.ctx, [this.startX, this.startY]);
         let pos = hex.posX + "," + hex.posY;
         this.hexs[pos] = hex;
@@ -194,7 +210,8 @@ class Map {
       //If hex exists render it's details
       let hex = this.hexs[target];
       if (hex) {
-        hex.details();
+        let detes = this.biomes[hex.biome].details();
+        console.log(detes);
       }
     }
   }
@@ -223,10 +240,10 @@ class Map {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "columns", function() { return columns; });
-/*
+"Forest"/*
 Different render locations
 downshift col:[0, 130, 260, 390, 520]
-let biomes = ["mountain", "desert", "forest", "volcano", "ocean"];
+let biomes = ["Mountain", "Desert", "Forest", "Volcano", "ocean"];
 info is an object containing:
 {
   color: hex code
@@ -243,19 +260,19 @@ const BIOMES = {
   },
   "forest": {
     color: "#97d077",
-    biome: "forest",
+    biome: "Forest"
   },
   "desert": {
     color: "#fff2cc",
-    biome: "desert"
+    biome: "Desert"
   },
   "mountain": {
     color: "#a18160",
-    biome: "mountain"
+    biome: "Mountain"
   },
   "volcano": {
     color: "#ff3333",
-    biome: "volcano"
+    biome: "Volcano"
   }
 };
 
@@ -263,14 +280,14 @@ let columns = [
   [ //col 0
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "even",
       column: 0,
       row: 130
     },
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "even",
       column: 0,
       row: 260
@@ -279,21 +296,21 @@ let columns = [
   [ //col 1
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "odd",
       column: 1,
       row: 130
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "odd",
       column: 1,
       row: 260
     },
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "odd",
       column: 1,
       row: 390
@@ -302,28 +319,28 @@ let columns = [
   [ //col 2
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "even",
       column: 2,
       row: 130
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "even",
       column: 2,
       row: 260
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "even",
       column: 2,
       row: 390
     },
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "even",
       column: 2,
       row: 520
@@ -332,21 +349,21 @@ let columns = [
   [ //col 3
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "odd",
       column: 3,
       row: 130
     },
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "odd",
       column: 3,
       row: 260
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "odd",
       column: 3,
       row: 390
@@ -355,21 +372,21 @@ let columns = [
   [ //col 4
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "even",
       column: 4,
       row: 260
     },
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "even",
       column: 4,
       row: 390
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "even",
       column: 4,
       row: 520
@@ -378,7 +395,7 @@ let columns = [
   [ //col 5
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "odd",
       column: 5,
       row: 0
@@ -392,21 +409,21 @@ let columns = [
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "odd",
       column: 5,
       row: 260
     },
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "odd",
       column: 5,
       row: 390
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "odd",
       column: 5,
       row: 520
@@ -415,35 +432,35 @@ let columns = [
   [ //col 6
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "even",
       column: 6,
       row: 0
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "even",
       column: 6,
       row: 130
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "even",
       column: 6,
       row: 260
     },
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "even",
       column: 6,
       row: 390
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "even",
       column: 6,
       row: 520
@@ -452,14 +469,14 @@ let columns = [
   [ //col 7
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "odd",
       column: 7,
       row: 0
     },
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "odd",
       column: 7,
       row: 130
@@ -473,7 +490,7 @@ let columns = [
     },
     {
       color: BIOMES.forest.color,
-      biome: "forest",
+      biome: "Forest",
       parity: "odd",
       column: 7,
       row: 390
@@ -489,35 +506,35 @@ let columns = [
   [ //col 8
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "even",
       column: 8,
       row: 0
     },
     {
       color: BIOMES.volcano.color,
-      biome: "volcano",
+      biome: "Volcano",
       parity: "even",
       column: 8,
       row: 130
     },
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "even",
       column: 8,
       row: 260
     },
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "even",
       column: 8,
       row: 390
     },
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "even",
       column: 8,
       row: 520
@@ -526,21 +543,21 @@ let columns = [
   [ //col 9
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "odd",
       column: 9,
       row: 0
     },
     {
       color: BIOMES.mountain.color,
-      biome: "mountain",
+      biome: "Mountain",
       parity: "odd",
       column: 9,
       row: 130
     },
     {
       color: BIOMES.desert.color,
-      biome: "desert",
+      biome: "Desert",
       parity: "odd",
       column: 9,
       row: 260
@@ -625,6 +642,114 @@ class Hex {
   }
 }
 /* harmony export (immutable) */ __webpack_exports__["Hex"] = Hex;
+
+
+
+/***/ }),
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+class Biome {
+  constructor(type) {
+    switch (type) {
+      case "forest":
+        this.biome = "Forest";
+        this.color = "#97d077";
+        this.monsters = [];
+        break;
+      case "mountain":
+        this.biome = "Mountain";
+        this.color = "#a18160";
+        this.monsters = [];
+        break;
+      case "desert":
+        this.biome = "Desert";
+        this.color = "#fff2cc";
+        this.monsters = [];
+        break;
+      case "volcano":
+        this.biome = "Volcano";
+        this.color = "#ff3333";
+        this.monsters = [];
+        break;
+    }
+  }
+
+  addMonster(monster) {
+    this.monsters.push(monster);
+  }
+
+  getRandomSubarray(arr, size) {
+      var shuffled = arr.slice(0), i = arr.length, temp, index;
+      while (i--) {
+          index = Math.floor((i + 1) * Math.random());
+          temp = shuffled[index];
+          shuffled[index] = shuffled[i];
+          shuffled[i] = temp;
+      }
+      return shuffled.slice(0, size);
+  }
+
+  details() {
+    //Create selected array from list of monsters
+    //return that so it can be displayed in a list
+    let selected = this.getRandomSubarray(this.monsters, 3);
+
+    return {
+      name: this.biome,
+      color: this.color,
+      monsters: selected
+    };
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["Biome"] = Biome;
+
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+class Monster {
+  constructor(dataArr, id) {
+    //Data passed in as an array from google api response
+    this.name = dataArr[0];
+    this.size = dataArr[2];
+    this.type = dataArr[3];
+    this.biome = dataArr[6];
+    this.level = dataArr[7];
+    this.xp = dataArr[8];
+    this.description = dataArr[13];
+    this.id = id; //Row in the spreadsheet
+
+    this.details = this.details.bind(this);
+  }
+
+  details() {
+    return {
+      id: this.id,
+      name: this.name,
+      size: this.size,
+      type: this.type,
+      biomes: this.biome,
+      level: this.level,
+      xp: this.xp,
+      description: this.description
+    };
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["Monster"] = Monster;
 
 
 
