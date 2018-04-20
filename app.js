@@ -65,6 +65,8 @@ function extractNum(string) {
   return parseInt(array[array.length - 1]);
 }
 
+console.log("why won't this exist");
+
 // Get the modal
 var modal = document.getElementById('myModal');
 // Get the <span> element that closes the modal

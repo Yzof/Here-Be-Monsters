@@ -1,4 +1,4 @@
-"Forest"/*
+/*
 Different render locations
 downshift col:[0, 130, 260, 390, 520]
 let biomes = ["Mountain", "Desert", "Forest", "Volcano", "ocean"];
