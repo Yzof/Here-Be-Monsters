@@ -71,7 +71,7 @@ var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
 // Get the button that opens the modal
 var aboutBtn = document.getElementById("aboutBtn");
-var helpBtn = document.getElementById("helpBtn");
+aboutBtn.addEventListener("click", aboutHandle);
 
 function aboutHandle(e) {
   e.preventDefault();
@@ -89,6 +89,9 @@ function aboutHandle(e) {
   para2.appendChild(text);
   main.appendChild(para2);
 }
+
+var helpBtn = document.getElementById("helpBtn");
+helpBtn.addEventListener("click", helpHandle);
 
 function helpHandle() {
   let head = document.getElementById("header");
