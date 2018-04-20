@@ -117,6 +117,7 @@ function start() {
           let row = extractNum(data.range);
 
           let monster = new Monster(data.values[0], row);
+          //sometimes v is undefined.
           HBMap.biomes[monster.biome].addMonster(monster);
         }
         console.log(range);
@@ -169,7 +170,7 @@ class Map {
 
       for (var j = 0; j < column.length; j++) {
         let biome = new Biome(column[j].biome);
-
+        debugger;
         if (this.biomes[biome.biome] === undefined) {
           this.biomes[biome.biome] = biome;
         }
@@ -210,7 +211,7 @@ class Map {
       //If hex exists render it's details
       let hex = this.hexs[target];
       if (hex) {
-        debugger;
+        //hex is correct, the biomes aren't being added.
         let detes = this.biomes[hex.biome].details();
         console.log(detes);
       }

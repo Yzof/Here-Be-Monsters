@@ -47,6 +47,7 @@ function start() {
           let row = extractNum(data.range);
 
           let monster = new Monster(data.values[0], row);
+          //sometimes v is undefined.
           HBMap.biomes[monster.biome].addMonster(monster);
         }
         console.log(range);
