@@ -108,14 +108,21 @@ export class Map {
       let mon = details.monsters[j];
       let li = document.getElementById(`monster${j + 1}`);
 
-      li.innerHTML = `<p>${mon.name}</p>`;
+      li.innerHTML = `
+      <p class="monster-name">${mon.name}</p>
+      <ul class="monster-details">
+        <li class="monster-li">XP: ${mon.xp}<li>
+        <li class="monster-li">Size:${mon.size}<li>
+        <li class="monster-li">Type:${mon.type}<li>
+        <li class="monster-li">Description:${mon.description}<li>
+      </ul>
+      `;
     }
   }
 
   resetDetails() {
     var head = document.getElementById("header");
     let div = document.getElementsByClassName("modal-body")[0];
-    console.log("reset Details");
     let ul = div.firstElementChild;
     let para = head.firstElementChild;
 
