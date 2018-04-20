@@ -252,11 +252,14 @@ class Map {
     head.appendChild(para);
     modalHeader.style.backgroundColor = details.color;
 
-    for (var j = 1; j < details.monsters.length + 1; j++) {
+    for (var j = 0; j < details.monsters.length; j++) {
       let mon = details.monsters[j];
-      let li = document.getElementById(`monster${j}`);
-      let name = li.textContent = mon.name;
-      li.appendChild(name);
+      let li = document.getElementById(`monster${j + 1}`);
+      let par = document.createElement("p");
+      let name = document.createTextNode(mon.name);
+
+      par.appendChild(name);
+      li.appendChild(par);
     }
   }
 
