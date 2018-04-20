@@ -23,6 +23,7 @@ export class Map {
 
       for (var j = 0; j < column.length; j++) {
         let biome = new Biome(column[j].biome);
+        //wrod
         debugger;
         if (this.biomes[biome.biome] === undefined) {
           this.biomes[biome.biome] = biome;

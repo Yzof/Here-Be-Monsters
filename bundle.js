@@ -170,6 +170,7 @@ class Map {
 
       for (var j = 0; j < column.length; j++) {
         let biome = new Biome(column[j].biome);
+        //wrod
         debugger;
         if (this.biomes[biome.biome] === undefined) {
           this.biomes[biome.biome] = biome;
@@ -665,19 +666,19 @@ class Biome {
     let area = "";
     let code = "";
     switch (type) {
-      case "forest":
+      case "Forest":
         area = "Forest";
         code = "#97d077";
         break;
-      case "mountain":
+      case "Mountain":
         area = "Mountain";
         code = "#a18160";
         break;
-      case "desert":
+      case "Desert":
         area = "Desert";
         code = "#fff2cc";
         break;
-      case "volcano":
+      case "Volcano":
         area = "Volcano";
         code = "#ff3333";
         break;
