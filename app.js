@@ -72,7 +72,7 @@ var span = document.getElementsByClassName("close")[0];
 // Get the button that opens the modal
 var aboutBtn = document.getElementById("aboutBtn");
 aboutBtn.addEventListener("click", aboutHandle);
-
+console.log("outside handle");
 function aboutHandle(e) {
   e.preventDefault();
   console.log("about handle");
