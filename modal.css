@@ -81,7 +81,11 @@ li {
     padding: 2px 16px;
     background-color: #7ea6e0;
     color: black;
-    font-family: 'Niconne', cursive;
+}
+
+.niconne {
+  font-family: 'Niconne', cursive;
+  font-size: 20px;
 }
 
 .modal-body {padding: 2px 16px;}

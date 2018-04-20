@@ -60,16 +60,15 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
-/* 1 */
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const { Map } = __webpack_require__(2);
-const { Monster } = __webpack_require__(13);
+const { Map } = __webpack_require__(1);
+const { Monster } = __webpack_require__(5);
 
 let HBMap = new Map;
 
@@ -135,20 +134,97 @@ function extractNum(string) {
   return parseInt(array[array.length - 1]);
 }
 
+console.log("why won't this exist");
+
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// Get the button that opens the modal
+var aboutBtn = document.getElementById("aboutBtn");
+aboutBtn.addEventListener("click", aboutHandle);
+console.log("outside handle");
+function aboutHandle(e) {
+  e.preventDefault();
+  console.log("about handle");
+  modal.style.display = "block";
+  let head = document.getElementById("header");
+  let para1 = document.createElement("p");
+  let node = document.createTextNode("About");
+  para1.appendChild(node);
+  head.appendChild(para1);
+
+  let main = document.getElementsByClassName('modal-body')[0];
+  let para2 = document.createElement("p");
+  let text = document.createTextNode(
+    "Here Be Monsters is a visual representation of data points stored in a spreadsheet. It uses Googles Sheets API and HTML canvas to create an interactive map. Given any spreadsheet, a similar system can be implemented in order to create a pleasing display for users."
+  );
+  para2.appendChild(text);
+  main.appendChild(para2);
+}
+
+var helpBtn = document.getElementById("helpBtn");
+helpBtn.addEventListener("click", helpHandle);
+
+function helpHandle(e) {
+  e.preventDefault();
+  console.log("help handle");
+  modal.style.display = "block";
+  let head = document.getElementById("header");
+  let para1 = document.createElement("p");
+  let node = document.createTextNode("Help");
+
+  para1.appendChild(node);
+  head.appendChild(para1);
+
+  let main = document.getElementsByClassName('modal-body')[0];
+  let para2 = document.createElement("p");
+  let text = document.createTextNode(
+    "Each of the Hexagrams on the map below represent a Biome, each containing a unique assortment of dangerous monsters. The selection is a semi-randomized list of those monsters and their associated data. Feel free to explore and see what you find!"
+  );
+  para2.appendChild(text);
+  main.appendChild(para2);
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+    let head = document.getElementById("header");
+    let node = head.firstElementChild;
+    let main = document.getElementsByClassName('modal-body')[0];
+    let node2 = main.firstElementChild;
+    //remove child
+
+    head.removeChild(node);
+    main.removeChild(node2);
+};
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        let head = document.getElementById("header");
+        let node = head.firstElementChild;
+        let main = document.getElementsByClassName('modal-body')[0];
+        let node2 = main.firstElementChild;
+        //remove child
+        console.log("node2:", node2);
+        head.removeChild(node);
+        main.removeChild(node2);
+    }
+};
 // Loads the JavaScript client library and invokes `start` afterwards.
 gapi.load('client', start);
 HBMap.render();
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const { columns } = __webpack_require__(3);
-const { Hex } = __webpack_require__(4);
-const { Biome } = __webpack_require__(12);
+const { columns } = __webpack_require__(2);
+const { Hex } = __webpack_require__(3);
+const { Biome } = __webpack_require__(4);
 
 class Map {
   constructor(){
@@ -301,13 +377,13 @@ class Map {
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "columns", function() { return columns; });
-"Forest"/*
+/*
 Different render locations
 downshift col:[0, 130, 260, 390, 520]
 let biomes = ["Mountain", "Desert", "Forest", "Volcano", "ocean"];
@@ -636,7 +712,7 @@ let columns = [
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -713,14 +789,7 @@ class Hex {
 
 
 /***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -786,7 +855,7 @@ class Biome {
 
 
 /***/ }),
-/* 13 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
