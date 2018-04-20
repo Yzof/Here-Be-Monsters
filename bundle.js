@@ -193,7 +193,6 @@ function helpHandle(e) {
 }
 
 span.onclick = function() {
-  console.log("span click");
     modal.style.display = "none";
     let head = document.getElementById("header");
     let node = head.firstElementChild;
@@ -212,7 +211,7 @@ span.onclick = function() {
 };
 
 window.onclick = function(event) {
-  console.log(event.target);
+  console.log(event.target, "target");
     if (event.target == modal) {
         modal.style.display = "none";
         let head = document.getElementById("header");
