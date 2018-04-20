@@ -112,9 +112,9 @@ export class Map {
       <p class="monster-name">${mon.name}</p>
       <ul class="monster-details">
         <li class="monster-li">XP: ${mon.xp}<li>
-        <li class="monster-li">Size:${mon.size}<li>
-        <li class="monster-li">Type:${mon.type}<li>
-        <li class="monster-li">Description:${mon.description}<li>
+        <li class="monster-li">Size: ${mon.size}<li>
+        <li class="monster-li">Type: ${mon.type}<li>
+        <li class="monster-li">Description: ${mon.description}<li>
       </ul>
       `;
     }
