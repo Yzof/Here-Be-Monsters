@@ -161,6 +161,7 @@ class Map {
     this.keys = [];
     this.biomes = {};
     this.clickHandler = this.clickHandler.bind(this);
+    this.resetDetails = this.resetDetails.bind(this);
 
     this.populate();
   }
