@@ -129,7 +129,9 @@ export class Map {
     let node2 = document.getElementById("detail-body");
     console.log("reset details");
     head.removeChild(para);
-    main.removeChild(node2);
+    if (node2) {
+      main.removeChild(node2);
+    }
     for (var j = 0; j < 3; j++) {
       let li = document.getElementById(`monster${j + 1}`);
 
