@@ -15,6 +15,9 @@ body {
   text-align: center;
 }
 
+#title {
+  font-size: 50px;
+}
 .flex {
   display: flex;
   justify-content: space-evenly;
