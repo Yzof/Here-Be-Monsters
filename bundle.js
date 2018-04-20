@@ -116,7 +116,7 @@ function start() {
           let data = range.valueRanges[i];
           let row = extractNum(data.range);
 
-          let monster = new Monster(data.values, row);
+          let monster = new Monster(data.values[0], row);
           HBMap.biomes[monster.biome].addMonster(monster);
         }
         console.log(range);
@@ -660,29 +660,29 @@ class Hex {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 class Biome {
   constructor(type) {
+    let area = "";
+    let code = "";
     switch (type) {
       case "forest":
-        this.biome = "Forest";
-        this.color = "#97d077";
-        this.monsters = [];
+        area = "Forest";
+        code = "#97d077";
         break;
       case "mountain":
-        this.biome = "Mountain";
-        this.color = "#a18160";
-        this.monsters = [];
+        area = "Mountain";
+        code = "#a18160";
         break;
       case "desert":
-        this.biome = "Desert";
-        this.color = "#fff2cc";
-        this.monsters = [];
+        area = "Desert";
+        code = "#fff2cc";
         break;
       case "volcano":
-        this.biome = "Volcano";
-        this.color = "#ff3333";
-        this.monsters = [];
+        area = "Volcano";
+        code = "#ff3333";
         break;
     }
-
+    this.biome = area;
+    this.color = code;
+    this.monsters = [];
     this.addMonster = this.addMonster.bind(this);
     this.details = this.details.bind(this);
   }
