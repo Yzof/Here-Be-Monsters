@@ -255,11 +255,9 @@ class Map {
     for (var j = 0; j < details.monsters.length; j++) {
       let mon = details.monsters[j];
       let li = document.getElementById(`monster${j + 1}`);
-      let par = document.createElement("p");
       let name = document.createTextNode(mon.name);
 
-      par.appendChild(name);
-      li.appendChild(par);
+      li.innerHTML = `<p>${mon.name}</p>`;
     }
   }
 
