@@ -27,6 +27,14 @@ li {
   text-align: center;
 }
 
+#header {
+  margin-left: 60px;
+}
+
+.monster-name {
+  margin-left: 20px;
+}
+
 /* Modal Content */
 .modal-content {
     position: relative;
