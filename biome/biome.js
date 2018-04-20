@@ -28,7 +28,6 @@ export class Biome {
   }
 
   addMonster(monster) {
-    debugger;
     this.monsters.push(monster);
   }
 

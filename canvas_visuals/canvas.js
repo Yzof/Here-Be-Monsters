@@ -65,6 +65,7 @@ export class Map {
       let hex = this.hexs[target];
       if (hex) {
         let detes = this.biomes[hex.biome].details();
+        debugger;
         console.log(detes);
       }
     }
