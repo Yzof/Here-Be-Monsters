@@ -197,7 +197,6 @@ span.onclick = function() {
     let head = document.getElementById("header");
     let node = head.firstElementChild;
     let main = document.getElementsByClassName('modal-body')[0];
-    //this is a ul, needs to be a p
     let node2 = document.getElementById("detail-body");
     //remove child
     console.log("Before head", head);
@@ -362,9 +361,11 @@ class Map {
     let div = document.getElementsByClassName("modal-body")[0];
     let ul = div.firstElementChild;
     let para = head.firstElementChild;
-
+    let main = document.getElementsByClassName('modal-body')[0];
+    let node2 = document.getElementById("detail-body");
+    console.log("reset details");
     head.removeChild(para);
-
+    main.removeChild(node2);
     for (var j = 0; j < 3; j++) {
       let li = document.getElementById(`monster${j + 1}`);
 

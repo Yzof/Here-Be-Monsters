@@ -128,7 +128,6 @@ span.onclick = function() {
     let head = document.getElementById("header");
     let node = head.firstElementChild;
     let main = document.getElementsByClassName('modal-body')[0];
-    //this is a ul, needs to be a p
     let node2 = document.getElementById("detail-body");
     //remove child
     console.log("Before head", head);
