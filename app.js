@@ -75,6 +75,7 @@ aboutBtn.addEventListener("click", aboutHandle);
 
 function aboutHandle(e) {
   e.preventDefault();
+  console.log("about handle");
   modal.style.display = "block";
   let head = document.getElementById("header");
   let para1 = document.createElement("p");
@@ -96,6 +97,7 @@ helpBtn.addEventListener("click", helpHandle);
 
 function helpHandle(e) {
   e.preventDefault();
+  console.log("help handle");
   modal.style.display = "block";
   let head = document.getElementById("header");
   let para1 = document.createElement("p");
