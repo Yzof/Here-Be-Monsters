@@ -228,7 +228,7 @@ class Map {
         span.onclick = function() {
             modal.style.display = "none";
             this.resetDetails();
-        };
+        }.bind(this);
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
@@ -236,7 +236,7 @@ class Map {
                 modal.style.display = "none";
                 this.resetDetails();
             }
-        };
+        }.bind(this);
       }
     }
   }
