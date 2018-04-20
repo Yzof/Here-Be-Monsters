@@ -79,8 +79,9 @@ li {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #7ea6e0;
     color: black;
+    font-family: 'Niconne', cursive;
 }
 
 .modal-body {padding: 2px 16px;}

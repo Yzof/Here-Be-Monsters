@@ -65,6 +65,73 @@ function extractNum(string) {
   return parseInt(array[array.length - 1]);
 }
 
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// Get the button that opens the modal
+var aboutBtn = document.getElementById("aboutBtn");
+var helpBtn = document.getElementById("helpBtn");
+
+function aboutHandle(e) {
+  e.preventDefault();
+  let head = document.getElementById("header");
+  let para1 = document.createElement("p");
+  let node = document.createTextNode("About");
+  para1.appendChild(node);
+  head.appendChild(para1);
+
+  let main = document.getElementsByClassName('modal-body')[0];
+  let para2 = document.createElement("p");
+  let text = document.createTextNode(
+    "Here Be Monsters is a visual representation of data points stored in a spreadsheet. It uses Googles Sheets API and HTML canvas to create an interactive map. Given any spreadsheet, a similar system can be implemented in order to create a pleasing display for users."
+  );
+  para2.appendChild(text);
+  main.appendChild(para2);
+}
+
+function helpHandle() {
+  let head = document.getElementById("header");
+  let para1 = document.createElement("p");
+  let node = document.createTextNode("Help");
+
+  para1.appendChild(node);
+  head.appendChild(para1);
+
+  let main = document.getElementsByClassName('modal-body')[0];
+  let para2 = document.createElement("p");
+  let text = document.createTextNode(
+    "Each of the Hexagrams on the map below represent a Biome, each containing a unique assortment of dangerous monsters. The selection is a semi-randomized list of those monsters and their associated data. Feel free to explore and see what you find!"
+  );
+  para2.appendChild(text);
+  main.appendChild(para2);
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+    let head = document.getElementById("header");
+    let node = head.firstElementChild;
+    let main = document.getElementsByClassName('modal-body')[0];
+    let node2 = main.firstElementChild;
+    //remove child
+
+    head.removeChild(node);
+    main.removeChild(node2);
+};
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        let head = document.getElementById("header");
+        let node = head.firstElementChild;
+        let main = document.getElementsByClassName('modal-body')[0];
+        let node2 = main.firstElementChild;
+        //remove child
+        console.log("node2:", node2);
+        head.removeChild(node);
+        main.removeChild(node2);
+    }
+};
 // Loads the JavaScript client library and invokes `start` afterwards.
 gapi.load('client', start);
 HBMap.render();
