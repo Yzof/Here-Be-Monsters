@@ -143,7 +143,6 @@ var span = document.getElementsByClassName("close")[0];
 // Get the button that opens the modal
 var aboutBtn = document.getElementById("aboutBtn");
 aboutBtn.addEventListener("click", aboutHandle);
-console.log("outside handle");
 function aboutHandle(e) {
   e.preventDefault();
   console.log("about handle");
@@ -192,15 +191,21 @@ function helpHandle(e) {
 }
 
 span.onclick = function() {
+  console.log("span click");
     modal.style.display = "none";
     let head = document.getElementById("header");
     let node = head.firstElementChild;
     let main = document.getElementsByClassName('modal-body')[0];
     let node2 = main.firstElementChild;
     //remove child
-
+    console.log("Before head", head);
+    console.log("Before Main", main);
+    console.log("Before Node1", node);
+    console.log("Before Node2", node2);
     head.removeChild(node);
     main.removeChild(node2);
+    console.log("After head", head);
+    console.log("After Main", main);
 };
 
 window.onclick = function(event) {
