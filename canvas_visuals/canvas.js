@@ -106,7 +106,7 @@ export class Map {
     for (var j = 1; j < details.monsters.length + 1; j++) {
       let mon = details.monsters[j];
       let li = document.getElementById(`monster${j}`);
-      let name = li.createTextNode(mon.name);
+      let name = li.textContent = mon.name;
       li.appendChild(name);
     }
   }
