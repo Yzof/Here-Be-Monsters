@@ -116,7 +116,7 @@ export class Map {
   resetDetails() {
     var head = document.getElementById("header");
     let div = document.getElementsByClassName("modal-body")[0];
-
+    console.log("reset Details");
     let ul = div.firstElementChild;
     let para = head.firstElementChild;
 
@@ -125,10 +125,13 @@ export class Map {
 
     let newUl = document.createElement('ul');
     newUl.id = "monster-list";
+    console.log(newUl, "new Ul");
 
     for (var i = 1; i < 4; i++) {
+      console.log("for loop");
       let newLi = document.createElement('li');
       newLi.id = `monster${i}`;
+      console.log(`Monster number ${i}`, newLi);
       newUl.appendChild(newLi);
     }
   }
