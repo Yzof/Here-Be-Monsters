@@ -1,6 +1,9 @@
 #canvas {
   border: 1px solid black;
 }
+body {
+  background-image: url("https://i.pinimg.com/originals/97/98/dc/9798dcf6a285ee6151743fb4c5886b55.jpg");
+}
 
 .center {
   text-align: center;
@@ -8,5 +11,12 @@
 
 .flex {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navButton {
+  height: 30px;
+  background-color: #7ea6e0;
+  border-radius: 10px;
 }
