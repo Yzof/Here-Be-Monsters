@@ -48,7 +48,7 @@ function start() {
 
           let monster = new Monster(data.values[0], row);
           //sometimes v is undefined.
-          if (HBMap.biomes[monster.biome]) {
+          if (HBMap.biomes[monster.biome] === undefined) {
             debugger;
           }
           HBMap.biomes[monster.biome].addMonster(monster);
