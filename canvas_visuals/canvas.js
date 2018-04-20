@@ -64,8 +64,8 @@ export class Map {
       //If hex exists render it's details
       let hex = this.hexs[target];
       if (hex) {
-        let detes = this.biomes[hex.biome].details();
         debugger;
+        let detes = this.biomes[hex.biome].details();
         console.log(detes);
       }
     }
